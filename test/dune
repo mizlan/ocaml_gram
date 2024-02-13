@@ -1,0 +1,5 @@
+(library
+ (name test_ocaml_gram)
+ (libraries ocaml_gram)
+ (inline_tests)
+ (preprocess (pps ppx_deriving.show ppx_expect)))

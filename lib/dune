@@ -1,0 +1,10 @@
+(library
+ (name ocaml_gram)
+ (preprocess (pps ppx_deriving.show)))
+
+(menhir
+  (modules parser)
+  (flags --explain --dump)
+  (infer true))
+
+(ocamllex lexer)
