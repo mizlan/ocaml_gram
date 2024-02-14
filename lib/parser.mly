@@ -16,9 +16,9 @@
 %nonassoc EQ LE
 (* %nonassoc LPAREN *)
 (* %nonassc RPAREN *)
+%right CONS
 %left PLUS
 %left TIMES
-%right CONS
 (* %nonassoc VAR *)
 (* %nonassoc below_APP *)
 
