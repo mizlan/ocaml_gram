@@ -12,7 +12,7 @@ let rec pp_expr f = function
   | EInt i -> fprintf f "o_int(%a)" int i
   | EBool b -> fprintf f "o_bool(%a)" bool b
   | EIfThenElse (c, a, b) ->
-      fprintf f "@[o_if(@,%a,@ %a,@ %a@,)@]" pp_expr c pp_expr a pp_expr b
+      fprintf f "@[<v 2>o_if(%a,@ %a,@ %a)@]" pp_expr c pp_expr a pp_expr b
   | EList l -> fprintf f "@[<hv 2>o_list(@,%a@,)@]" (pp_pl_list pp_expr) l
   | ETuple t -> fprintf f "@[<hv 2>o_tup(%a)@]" (pp_pl_list pp_expr) t
   | EAbs (pl, e) ->
