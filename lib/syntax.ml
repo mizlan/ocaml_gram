@@ -5,7 +5,7 @@ type expr =
   | EApp of expr * expr list (* f a b c *)
   | ETuple of expr list
   | ECons of expr * expr
-  | EAbs of pattern list * expr (* fun a b c -> d *)
+  | EAbs of pattern * expr (* fun a b c -> d *)
   | EBop of expr * bop * expr
   | EMatch of expr * (pattern * expr) list
   | ELet of bool * pattern * expr * expr (* let rec? x = y in z *)

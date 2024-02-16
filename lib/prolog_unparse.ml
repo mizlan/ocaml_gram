@@ -1,8 +1,7 @@
 open CCFormat
 open Syntax
 
-let pp_pl_list pp =
-  CCList.pp ~pp_start:(return "[@,") ~pp_stop:(return "]") pp
+let pp_pl_list pp = CCList.pp ~pp_start:(return "[@,") ~pp_stop:(return "]") pp
 
 let pp_pl_list_nb pp =
   CCList.pp ~pp_start:(return "[@,") ~pp_stop:(return "]") pp
@@ -16,8 +15,7 @@ let rec pp_expr f = function
   | EList l -> fprintf f "@[<hv 2>o_list(@,%a@,)@]" (pp_pl_list pp_expr) l
   | ETuple t -> fprintf f "@[<hv 2>o_tup(%a)@]" (pp_pl_list pp_expr) t
   | EAbs (pl, e) ->
-      fprintf f "@[<hv 2>@[<hv 2>o_fun(%a@],@ %a)@]" (pp_pl_list pp_patt) pl
-        pp_expr e
+      fprintf f "@[<hv 2>o_fun(%a,@ %a)@]" pp_patt pl pp_expr e
   | EBop (a, o, b) ->
       fprintf f "@[o_bop(@,%a,@ %a,@ %a@,)@]" pp_expr a pp_bop o pp_expr b
   | ECons (x, xs) ->

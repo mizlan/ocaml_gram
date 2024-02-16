@@ -7,7 +7,7 @@ let%expect_test "commas and plus" =
     [%expect{|
       (Syntax.ETuple
          [(Syntax.EVar "x");
-           (Syntax.EAbs ([(Syntax.PVar "y")],
+           (Syntax.EAbs ((Syntax.PVar "y"),
               (Syntax.ETuple
                  [(Syntax.EBop ((Syntax.EVar "z"), Syntax.BPlus, (Syntax.EVar "y")
                      ));
@@ -40,8 +40,10 @@ let%expect_test "normal exprs" =
     [%expect{|
       (Syntax.EMatch ((Syntax.EVar "x"),
          [((Syntax.PCons ((Syntax.PVar "a"), (Syntax.PVar "b"))),
-           (Syntax.EAbs ([(Syntax.PVar "x"); (Syntax.PVar "y")],
-              (Syntax.ETuple [(Syntax.EVar "z"); (Syntax.EVar "n")]))))
+           (Syntax.EAbs ((Syntax.PVar "x"),
+              (Syntax.EAbs ((Syntax.PVar "y"),
+                 (Syntax.ETuple [(Syntax.EVar "z"); (Syntax.EVar "n")])))
+              )))
            ]
          )) |}]
   with Parser.Error ->

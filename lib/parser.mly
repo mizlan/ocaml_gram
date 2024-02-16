@@ -37,7 +37,7 @@ let expr :=
   | MATCH; ~ = expr; WITH; ~ = nonempty_list(BAR; p = pattern; ARROW; e = expr; { (p, e) }); <EMatch>
   | LET; ~ = boption(REC); ~ = pattern; EQ; a = expr; IN; b = expr; <ELet>
   | a = expr; CONS; b = expr; <ECons>
-  | FUN; ~ = nonempty_list(pattern); ARROW; ~ = expr; <EAbs>
+  | FUN; params = nonempty_list(pattern); ARROW; ~ = expr; { List.fold_right (fun x acc -> EAbs (x, acc)) params expr }
   | f = simple_expr; arg = nonempty_list(simple_expr); <EApp>
   | a = expr; PLUS; b = expr; { EBop (a, BPlus, b) }
   | a = expr; TIMES; b = expr; { EBop (a, BTimes, b) }
